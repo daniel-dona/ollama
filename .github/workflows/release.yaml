@@ -450,7 +450,7 @@ jobs:
 
   # Aggregate all the assets and ship a release
   release:
-    needs: [darwin-sign, windows-sign, linux-build]
+    needs: [linux-build] #darwin-sign, windows-sign,
     runs-on: linux
     environment: release
     permissions:
@@ -459,14 +459,14 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          name: dist-darwin
-          path: dist
-      - uses: actions/download-artifact@v4
-        with:
-          name: dist-windows
-          path: dist
+      #- uses: actions/download-artifact@v4
+      #  with:
+      #    name: dist-darwin
+      #    path: dist
+      #- uses: actions/download-artifact@v4
+      #  with:
+      #    name: dist-windows
+      #    path: dist
       - uses: actions/download-artifact@v4
         with:
           pattern: dist-linux-*
